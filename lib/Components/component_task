@@ -1,0 +1,171 @@
+import '/backend/backend.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_util.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import 'component_task_model.dart';
+export 'component_task_model.dart';
+
+class ComponentTaskWidget extends StatefulWidget {
+  const ComponentTaskWidget({
+    super.key,
+    required this.tsksDocument,
+    required this.checkAction,
+  });
+
+  final TasksRecord? tsksDocument;
+  final Future Function()? checkAction;
+
+  @override
+  State<ComponentTaskWidget> createState() => _ComponentTaskWidgetState();
+}
+
+class _ComponentTaskWidgetState extends State<ComponentTaskWidget> {
+  late ComponentTaskModel _model;
+
+  @override
+  void setState(VoidCallback callback) {
+    super.setState(callback);
+    _model.onUpdate();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _model = createModel(context, () => ComponentTaskModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _model.maybeDispose();
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsetsDirectional.fromSTEB(6, 0, 6, 0),
+      child: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          color: FlutterFlowTheme.of(context).secondaryBackground,
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(24),
+            bottomRight: Radius.circular(24),
+            topLeft: Radius.circular(24),
+            topRight: Radius.circular(24),
+          ),
+          border: Border.all(
+            color: FlutterFlowTheme.of(context).primaryText,
+          ),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Flexible(
+              child: Align(
+                alignment: AlignmentDirectional(0, 0),
+                child: Padding(
+                  padding: EdgeInsets.all(12),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Align(
+                            alignment: AlignmentDirectional(0, 0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: Image.network(
+                                'https://i.scdn.co/image/ab67616d0000b2735f4604aff952dc7b0a8e511e',
+                                width: 50,
+                                height: 50,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  'The Letter',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Inter',
+                                        letterSpacing: 0.0,
+                                      ),
+                                ),
+                              ),
+                              Text(
+                                'The Box Tops',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                            ].divide(SizedBox(height: 12)),
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              FlutterFlowIconButton(
+                                borderRadius: 8,
+                                buttonSize: 40,
+                                fillColor: FlutterFlowTheme.of(context).primary,
+                                icon: Icon(
+                                  Icons.play_circle,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 24,
+                                ),
+                                onPressed: () {
+                                  print('buttonPlayPause pressed ...');
+                                },
+                              ),
+                              FlutterFlowIconButton(
+                                borderRadius: 8,
+                                buttonSize: 40,
+                                fillColor: FlutterFlowTheme.of(context).primary,
+                                icon: Icon(
+                                  Icons.playlist_add,
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  size: 24,
+                                ),
+                                onPressed: () {
+                                  print('buttonToPlaylist pressed ...');
+                                },
+                              ),
+                            ].divide(SizedBox(width: 12)),
+                          ),
+                        ].divide(SizedBox(width: 12)),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
